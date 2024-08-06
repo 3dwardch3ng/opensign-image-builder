@@ -148,7 +148,7 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Create manifest list and push
-        working-directory: /tmp/digests
+        working-directory: /tmp/digests/server
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf 'edeedeeed/opensign-server@sha256:%s ' *)
@@ -188,7 +188,7 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Create manifest list and push
-        working-directory: /tmp/digests
+        working-directory: /tmp/digests/mongo
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf 'edeedeeed/opensign-mongo@sha256:%s ' *)
@@ -228,7 +228,7 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Create manifest list and push
-        working-directory: /tmp/digests
+        working-directory: /tmp/digests/client
         run: |
           docker buildx imagetools create $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             $(printf 'edeedeeed/opensign-client@sha256:%s ' *)
