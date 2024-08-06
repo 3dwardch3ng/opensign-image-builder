@@ -57,8 +57,8 @@ jobs:
       - name: Export digest - server
         run: |
           mkdir -p /tmp/digests/server
-          digest-server="${{ steps.build-server.outputs.digest }}"
-          touch "/tmp/digests/server/${digest-server#sha256:}"
+          digest="${{ steps.build-server.outputs.digest }}"
+          touch "/tmp/digests/server/${digest#sha256:}"
       - name: Upload digest - server
         uses: actions/upload-artifact@v4
         with:
@@ -82,8 +82,8 @@ jobs:
       - name: Export digest - mongo
         run: |
           mkdir -p /tmp/digests/mongo
-          digest-mongo="${{ steps.build-mongo.outputs.digest }}"
-          touch "/tmp/digests/mongo/${digest-mongo#sha256:}"
+          digest="${{ steps.build-mongo.outputs.digest }}"
+          touch "/tmp/digests/mongo/${digest#sha256:}"
       - name: Upload digest - mongo
         uses: actions/upload-artifact@v4
         with:
@@ -107,8 +107,8 @@ jobs:
       - name: Export digest - client
         run: |
           mkdir -p /tmp/digests/client
-          digest-client="${{ steps.build-client.outputs.digest }}"
-          touch "/tmp/digests/client/${digest-client#sha256:}"
+          digest="${{ steps.build-client.outputs.digest }}"
+          touch "/tmp/digests/client/${digest#sha256:}"
       - name: Upload digest - client
         uses: actions/upload-artifact@v4
         with:
